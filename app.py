@@ -80,15 +80,9 @@ if __name__ == "__main__":
             # mlflow.set_tracking_uri(remote_server_uri)
             tracking_uri_scheme = urlparse(mlflow.get_tracking_uri()).scheme
             
-            if tracking_uri_scheme !="file":
-                mlflow.sklearn.log_model(
-                    lr,"model",registered_model_name="ElasticNetWineModel",signature=signature
-                )
-                
-            else:
-                mlflow.sklearn.log_model(
-                    lr,"model",signature=signature
-                )
+            mlflow.sklearn.log_model(
+                lr,"model",signature=signature
+            )
                 
                 
     except Exception as e:

@@ -1,4 +1,5 @@
 import sys 
+import os 
 
 from sklearn.linear_model import ElasticNet
 
@@ -16,6 +17,14 @@ from mlflow.models import infer_signature
 import logging 
 
 from urllib.parse import urlparse
+
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = "87312875f12de362a9518689a2daf6e21aab0676"
+# os.environ["MLFLOW_TRACKING_USERNAME"] = "Rajkumar-Ai-Engineer"
+# os.environ["MLFLOW_TRACKING_URI"] = "https://dagshub.com/Rajkumar-Ai-Engineer/MLFLOW.mlflow"
+
+import dagshub
+
+dagshub.init(repo_owner='Rajkumar-Ai-Engineer', repo_name='MLFLOW', mlflow=True)
 
 
 logging.basicConfig(level=logging.WARN)
@@ -67,8 +76,8 @@ if __name__ == "__main__":
             predictions = lr.predict(train_x)
             signature = infer_signature(train_x,predictions)
             
-            remote_server_uri  = "https://dagshub.com/Rajkumar-Ai-Engineer/MLFLOW.mlflow"
-            mlflow.set_tracking_uri(remote_server_uri)
+            # remote_server_uri  = "https://dagshub.com/Rajkumar-Ai-Engineer/MLFLOW.mlflow"
+            # mlflow.set_tracking_uri(remote_server_uri)
             tracking_uri_scheme = urlparse(mlflow.get_tracking_uri()).scheme
             
             if tracking_uri_scheme !="file":
